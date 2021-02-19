@@ -1,0 +1,16 @@
+spring:
+  kafka:
+    bootstrap-servers: "localhost:9092"
+    listener:
+      type: batch
+    consumer:
+      group-id: "myGroup"
+      properties:
+        isolation.level: read_committed
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      #transaction-id-prefix: tx.
+      properties:
+        spring.json.type.mapping: foo:com.hm.kafka.common.Foo1,bar:com.hm.kafka.common.Bar1
+        #partitioner:
+        #  class: com.hm.kafka.config.CustomizePartitioner
